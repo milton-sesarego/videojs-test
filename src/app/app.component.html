@@ -1,10 +1,7 @@
 <div class="wrapper">
   <div class="videocontent center">
-    <vjs-player [options]="{ poster:'../assets/videos/oceans.jpeg', controls: true,
-    sources: [{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]}"></vjs-player>
-    <vjs-player [options]="{ poster:'../assets/videos/orquesta.jpeg', controls: true,
-    sources: [{ src: '../assets/videos/orquesta.mp4', type: 'video/mp4' }]}"></vjs-player>
-    <vjs-player [options]="{ poster:'../assets/videos/sample_1280x720.jpeg', controls: true,
-    sources: [{ src: '../assets/videos/sample_1280x720.m4v', type: 'video/mp4' }]}"></vjs-player>
+    <div *ngFor="let opc of opciones">
+      <vjs-player [options]="opc"></vjs-player>
+    </div>
   </div>
 </div>

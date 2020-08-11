@@ -1,12 +1,15 @@
 // vjs-player.component.ts
 import { Component, ElementRef, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { VideoOptions } from './vjs.model';
 import videojs from 'video.js';
 import 'videojs-sprite-thumbnails';
+import 'videojs-youtube';
+import '@devmobiliza/videojs-vimeo/dist/videojs-vimeo.cjs';
 
 @Component({
   selector: 'vjs-player',
   template: `
-    <video #target class="video-js vjs-16-9" controls muted playsinline preload="none"></video>
+    <video #target class="video-js"></video>
   `,
   styleUrls: [
     './vjs-player.component.scss'
@@ -15,15 +18,7 @@ import 'videojs-sprite-thumbnails';
 })
 export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('target', {static: true}) target: ElementRef;
-  @Input() options: {
-      fluid: boolean,
-      aspectRatio: string,
-      autoplay: boolean,
-      sources: {
-          src: string,
-          type: string,
-      }[],
-  };
+  @Input() options: VideoOptions;
 
   player: videojs.Player;
 
@@ -37,14 +32,16 @@ export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
     // console.log('onPlayerReady', this);
     });
 
-    /*
-    this.player.spriteThumbnails({
-      interval: this.target.nativeElement.duration / 4,
-      url: '../assets/videos/oceans.jpeg',
-      width: 256,
-      height: 106
-    });
-    console.log(this.target.nativeElement.duration);*/
+    /* TODO: VIDEO SPRITE THUMBNAILS
+    const self = this;
+    this.target.nativeElement.onloadedmetadata = function() {
+      self.player.spriteThumbnails({
+        interval: //,
+        url: '../assets/videos/thumbnails/oceans.jpeg',
+        width: //,
+        height: //
+      });
+    };*/
   }
 
   ngOnDestroy() {

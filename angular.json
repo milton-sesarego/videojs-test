@@ -22,6 +22,21 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "@babel/runtime/helpers/possibleConstructorReturn",
+              "@babel/runtime/helpers/construct",
+              "@babel/runtime/helpers/inherits",
+              "videojs-vtt.js",
+              "@videojs/vhs-utils/dist/resolve-ur",
+              "@videojs/vhs-utils/dist/decode-b64-to-uint8-array",
+              "@videojs/vhs-utils/dist/resolve-url",
+              "@videojs/xhr",
+              "mux.js",
+              "global",
+              "xmldom",
+              "videojs-youtube",
+              "@devmobiliza/videojs-vimeo/dist/videojs-vimeo.cjs"
+           ],
             "aot": true,
             "assets": [
               "src/favicon.ico",
