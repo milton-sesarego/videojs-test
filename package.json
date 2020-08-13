@@ -20,10 +20,13 @@
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
     "@devmobiliza/videojs-vimeo": "^0.6.0",
+    "@types/video.js": "^7.3.10",
+    "@types/wavesurfer.js": "^3.3.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "video.js": "^7.8.4",
     "videojs-sprite-thumbnails": "^0.5.3",
+    "videojs-wavesurfer": "^3.3.0",
     "videojs-youtube": "^2.6.1",
     "zone.js": "~0.10.3"
   },

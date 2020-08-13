@@ -8,7 +8,7 @@ import { VjsPlayerComponent } from './vjs-player/vjs-player.component';
 @NgModule({
   declarations: [
     AppComponent,
-    VjsPlayerComponent
+    VjsPlayerComponent,
   ],
   imports: [
     BrowserModule,

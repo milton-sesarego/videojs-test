@@ -1,35 +1,47 @@
 // vjs-player.component.ts
-import { Component, ElementRef, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { VideoOptions } from './vjs.model';
-import videojs from 'video.js';
-import 'videojs-sprite-thumbnails';
+import { Component, ElementRef, Input, OnDestroy, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import videojs, { VideoJsPlayerOptions } from 'video.js';
+//import 'videojs-sprite-thumbnails';
 import 'videojs-youtube';
 import '@devmobiliza/videojs-vimeo/dist/videojs-vimeo.cjs';
+import * as WaveSurfer from 'wavesurfer.js';
+import * as Wavesurfer from 'videojs-wavesurfer/dist/videojs.wavesurfer.js';
 
 @Component({
   selector: 'vjs-player',
-  template: `
-    <video #target class="video-js"></video>
-  `,
-  styleUrls: [
-    './vjs-player.component.scss'
-  ],
+  templateUrl: './vjs-player.component.html',
+  styleUrls: ['./vjs-player.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('target', {static: true}) target: ElementRef;
-  @Input() options: VideoOptions;
+  private player;
+  private plugin;
+  private config: VideoJsPlayerOptions;
+  idx;
 
-  player: videojs.Player;
+  @Input() options: {config: VideoJsPlayerOptions, src: object, idx: number};
 
-  constructor(
-    private elementRef: ElementRef,
-  ) { }
+  constructor(private elementRef: ElementRef) {
+    this.player = false;
+    // save reference to plugin (so it initializes)
+    this.plugin = Wavesurfer;
+  }
 
   ngAfterViewInit() {
-    // instantiate Video.js
-    this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-    // console.log('onPlayerReady', this);
+
+    console.log(this.options.idx)
+    this.player = videojs(document.getElementById('target-' + this.options.idx), this.options.config, () => {
+      this.player.src(this.options.src);
+    });
+
+    // error handling
+    this.player.on('error', (element, error) => {
+      console.warn(error);
+    });
+
+    this.player.on('deviceError', () => {
+      console.error('device error:', this.player.deviceErrorCode);
     });
 
     /* TODO: VIDEO SPRITE THUMBNAILS
@@ -45,9 +57,9 @@ export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // destroy player
     if (this.player) {
       this.player.dispose();
+      this.player = false;
     }
   }
 }
