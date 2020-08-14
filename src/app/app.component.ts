@@ -13,8 +13,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     /*
-    * PARA VIDEOS USAR sources
-    * PARA AUDIOS USAR src
+    * PARA VIDEOS USAR atributo sources, en opciones
+    * PARA AUDIOS USAR atributo src, en opciones
+    *
+    * Si se itera para crear varios videos/audios, cada elemento tiene que tener un ID único (idx)
     */
     this.opciones = [/*
       {
@@ -49,8 +51,6 @@ export class AppComponent implements OnInit{
         autoplay: false,
         fluid: true,
         loop: false,
-        width: 600,
-        height: 300,
         plugins: {
           // configure videojs-wavesurfer plugin
           wavesurfer: {
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit{
               scrollParent: true
           }
         },
-        src: 'assets/2.mp3'
+        src: 'assets/1.mp3'
       }
     ];
 
