@@ -55,15 +55,19 @@ export class AppComponent implements OnInit{
           // configure videojs-wavesurfer plugin
           wavesurfer: {
               backend: 'MediaElement',
-              displayMilliseconds: true,
+              //displayMilliseconds: true,
               //debug: true,
               waveColor: 'gray',
               progressColor: 'white',
               cursorColor: 'white',
-              hideScrollbar: true
+              hideScrollbar: true,
+              barWidth: 2,
+              barHeight: 1,
+              barGap: null,
+              scrollParent: true
           }
         },
-        src: 'assets/1.mp3'
+        src: 'assets/2.mp3'
       }
     ];
 
