@@ -1,1 +1,3 @@
 <video id="{{ 'target-' + idx }}" class="video-js vjs-default-skin"></video>
+
+<vjs-chapters [timecodes]="timecodes" (chapterEmitter)="setChapter($event)"></vjs-chapters>

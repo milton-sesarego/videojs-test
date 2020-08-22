@@ -1,6 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoJsPlayerOptions } from 'video.js';
 
+export class TimeCode {
+  id? : number;
+  archiveid? : number;
+  code : string; // number?
+  active? : number;
+  title : string;
+  created? : string;
+  modified? : string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +18,8 @@ import { VideoJsPlayerOptions } from 'video.js';
 })
 
 export class AppComponent implements OnInit{
-  opciones: Array<VideoJsPlayerOptions>;
+  opciones: VideoJsPlayerOptions;
+  timecodes: TimeCode[];
   constructor(){}
 
   ngOnInit(){
@@ -18,19 +29,35 @@ export class AppComponent implements OnInit{
     *
     * Si se itera para crear varios videos/audios, cada elemento tiene que tener un ID único (idx)
     */
-    this.opciones = [/*
-      {
+    this.opciones = {
         poster: '../assets/videos/posters/oceans.jpeg',
         controls: true,
         aspectRatio: '16:9',
         preload: 'none',
-        sources: [{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]},
+        sources: [{ src: 'https://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }]
+    };
+    let timecode1: TimeCode = new TimeCode();
+    timecode1.code = '00:00:10';
+    timecode1.title = 'delfines';
+
+    let timecode2: TimeCode = new TimeCode();
+    timecode2.code = '00:00:25';
+    timecode2.title = 'más peces';
+
+    let timecode3: TimeCode = new TimeCode();
+    timecode3.code = '00:00:32';
+    timecode3.title = 'ballenas';
+
+    this.timecodes = [
+       timecode1, timecode2, timecode3
+    ];
+      /*
       {
         poster: '../assets/videos/posters/sample_1280x720.jpeg',
         controls: true,
         aspectRatio: '4:3',
         preload: 'none',
-        sources: [{ src: '../assets/videos/sample_1280x720.m4v', type: 'video/mp4' }]},*/
+        sources: [{ src: '../assets/videos/sample_1280x720.m4v', type: 'video/mp4' }]},
       {
         controls: true,
         aspectRatio: '4:3',
@@ -68,9 +95,6 @@ export class AppComponent implements OnInit{
           }
         },
         src: 'assets/1.mp3'
-      }
-    ];
-
-
+      }*/
   }
 }

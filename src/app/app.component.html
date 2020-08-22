@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="content center">
-    <div *ngFor="let opc of opciones; let i = index">
-      <vjs-player [options]="opc" [idx]="i"></vjs-player>
-    </div>
+    <!--<div *ngFor="let opc of opciones; let i = index">-->
+      <vjs-player [options]="opciones" [idx]="'i'" [timecodes]="timecodes"></vjs-player>
+    <!--</div>-->
   </div>
 </div>

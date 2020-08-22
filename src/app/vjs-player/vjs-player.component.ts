@@ -19,6 +19,7 @@ export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
   private plugin;
   @Input() idx: number;
   @Input() options: VideoJsPlayerOptions;
+  @Input() timecodes;
 
   constructor(private elementRef: ElementRef) {
     this.player = false;
@@ -29,6 +30,7 @@ export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.player = videojs(document.getElementById('target-' + this.idx), this.options, () => {
       this.player.src(this.options.src);
+      // this.player.play();
     });
 
     // error handling
@@ -50,6 +52,11 @@ export class VjsPlayerComponent implements AfterViewInit, OnDestroy {
         height: //
       });
     };*/
+  }
+
+  setChapter(obj){
+    this.player.currentTime(obj.seconds);
+    console.log(obj.title);
   }
 
   ngOnDestroy() {

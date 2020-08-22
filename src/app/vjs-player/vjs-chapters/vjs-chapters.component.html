@@ -1,0 +1,5 @@
+<p>Capítulos</p>
+<div *ngFor="let val of timecodes">
+  Capítulo
+  <button (click)="goToChapter(val)">{{val.code}}</button> {{val.title}}
+</div>
